@@ -1,0 +1,7 @@
+{
+  "globalDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160914114559",
+    "hapi": "registry:dt/hapi#13.0.0+20160928135445",
+    "node": "registry:dt/node#6.0.0+20161010101523"
+  }
+}

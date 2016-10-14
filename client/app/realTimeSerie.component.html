@@ -1,0 +1,31 @@
+<div>
+    <label>Acquisition Frequency: </label>
+    <input [(ngModel)]="frequency" placeholder="100">
+    <button (click)="sendFrequency(frequency)">Generate</button>
+    <div style="height: 30px"> </div>
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <base-chart style="height: 300px"
+                        class="chart" 
+                        [datasets]="lineChartData" 
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [chartType]="lineChartType" 
+                        >
+                </base-chart>
+            </div>
+            <div class="col-md-6" style="margin-bottom: 10px;">
+                <!--<table class="table table-responsive table-condensed">
+                    <tr>
+                        <th *ngFor="let label of lineChartLabels"></th>
+                    </tr>
+                    <tr *ngFor="let d of lineChartData">
+                        <td *ngFor="let label of lineChartLabels; let j=index"></td>
+                    </tr>
+                </table>-->
+                <!--<button (click)="randomize()">CLICK</button>-->
+            </div>
+        </div>
+    </div>
+</div>

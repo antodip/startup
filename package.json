@@ -1,0 +1,46 @@
+{
+  "name": "startup",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antodip/startup.git"
+  },
+  "author": "anto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antodip/startup/issues"
+  },
+  "homepage": "https://github.com/antodip/startup#readme",
+  "dependencies": {
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/router": "3.0.0",
+    "@angular/upgrade": "2.0.0",
+    "angular2-in-memory-web-api": "0.0.20",
+    "bootstrap": "^3.3.6",
+    "chart.js": "2.3.0",
+    "core-js": "^2.4.1",
+    "engine.io": "1.7.0",
+    "hapi": "15.0.3",
+    "inert": "4.0.2",
+    "minimist": "1.2.0",
+    "moment": "2.15.1",
+    "ng2-charts": "1.3.0",
+    "primus.io": "4.0.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.27",
+    "xtend": "4.0.1",
+    "zone.js": "^0.6.23"
+  }
+}
