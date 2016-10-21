@@ -5,7 +5,7 @@ import { Subject }  from 'rxjs/Subject';
 import { DataPoint } from './dataPoint';
 
 
-var Primus = require('/primus/primus.io.js');
+var Primus = require('../primus_io/primus.io.js');
 
 
 @Injectable()
@@ -35,17 +35,7 @@ export class RepositoryService {
 
     }
 
-    // sendFrequency(frequency: number) {
-    //     var socket = Primus.connect('http://localhost:8000');
-    //     let _this = this;
-
-    //     socket.on('open', function () {
-
-    //       socket.send("frequency", frequency)
-    //     });
-
-    // }
-
+   
     sendFrequency(frequency: number) {
 
        if (this._socket)
@@ -69,7 +59,7 @@ export class RepositoryService {
 
 
     private listenForData() {
-        var socket = Primus.connect();
+        var socket = Primus.connect('http://localhost:8000');
         let self = this;
 
         socket.on('open', function () {
