@@ -7,5 +7,10 @@
         "experimentalDecorators": true,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "typings/main",
+        "typings/main.d.ts"
+    ]
 }

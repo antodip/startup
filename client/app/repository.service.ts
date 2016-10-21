@@ -69,7 +69,7 @@ export class RepositoryService {
 
 
     private listenForData() {
-        var socket = Primus.connect('http://localhost:8000');
+        var socket = Primus.connect();
         let self = this;
 
         socket.on('open', function () {
