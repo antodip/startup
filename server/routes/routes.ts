@@ -2,14 +2,15 @@ import * as Hapi from "hapi";
 import * as Path from "path";
 
 
-export default function(server: Hapi.Server) {
+export default function(server: Hapi.Server, rootPath: string) {
 
+        
     server.route({
         method: 'GET',
         path: '/{param*}',
         handler: {
             directory: {
-               path: Path.join(__dirname, '../../client'),
+               path: Path.join(rootPath, './client'),
                 redirectToSlash: true,
                 index: true
 
@@ -22,7 +23,19 @@ export default function(server: Hapi.Server) {
         path: '/node_modules/{file*}',
         handler: {
             directory: {
-               path: Path.join(__dirname, '../../node_modules'),
+               path: Path.join(rootPath, './node_modules'),
+               listing: true
+
+            }
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/dist/{f*}',
+        handler: {
+            directory: {
+               path: Path.join(rootPath, './dist'),
                listing: true
 
             }
