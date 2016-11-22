@@ -19,12 +19,11 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       // other libraries
-      'rxjs':                       'npm:rxjs',
+      'rxjs': 'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
       'moment': 'npm:moment.js',
-      'ng2-charts': 'npm:ng2-charts/ng2-charts.js',
+      'ng2-charts': 'npm:ng2-charts',
       'primus': '/primus/primus.io.js'
-      
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -38,7 +37,10 @@
       'angular2-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
-      }
+      },
+      'ng2-charts': {
+        defaultExtension: 'js'
+      },
     }
   });
 })(this);
