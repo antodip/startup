@@ -16,17 +16,13 @@
     "postcopy:html": "cp  client/index_prod.html dist/client/index.html",
     "npm_remote_install_": "npm install --production --prefix ./dist/node_modules ",
     "npm_remote_install": "cd dist && npm install --production && npm shrinkwrap && cd ..",
-
-    "build:package:prod":"npm run copy:package && npm run npm_remote_install",
-    "build:frontend" : "npm run browserify && npm run minify:frontend && npm run copy:html",
-
-
+    "build:package:prod": "npm run copy:package && npm run npm_remote_install",
+    "build:frontend": "npm run browserify && npm run minify:frontend && npm run copy:html",
     "prebuild": "npm run clean && npm run build:local",
     "build": "npm run build:frontend && npm run obfuscate:backend",
     "postbuild": "npm run build:package:prod",
     "prebuild:local": "npm run install:package && npm run install:typings",
     "build:local": "npm run es5"
-   
   },
   "repository": {
     "type": "git",
@@ -63,12 +59,13 @@
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
     "angular2-in-memory-web-api": "0.0.20",
-     "ng2-charts": "1.3.0",
-     "rxjs": "5.0.0-beta.12",
     "bootstrap": "^3.3.6",
+    "browserify": "^13.1.1",
     "glob": "7.1.1",
     "gulp": "3.9.1",
+    "ng2-charts": "1.3.0",
     "obfuscator": "0.5.4",
+    "rxjs": "5.0.0-beta.12",
     "source-map-support": "0.4.5",
     "uglify-js": "2.7.3",
     "webpack": "1.13.2"

@@ -5,7 +5,7 @@ import { Subject }  from 'rxjs/Subject';
 import { DataPoint } from './dataPoint';
 
 
-var Primus = require('../primus_io/primus.io.js');
+var Primus = require('../precompiled/primus.io.js');
 
 
 @Injectable()
@@ -59,7 +59,7 @@ export class RepositoryService {
 
 
     private listenForData() {
-        var socket = Primus.connect('http://localhost:8000');
+        var socket = Primus.connect();
         let self = this;
 
         socket.on('open', function () {
