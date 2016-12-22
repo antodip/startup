@@ -12,7 +12,7 @@ import { DataPoint } from "./dataPoint";
 
 export class TimeSeriesComponent implements OnInit {
     public title = "Performance Tester";
-    public numPoints = 100;
+    public numPoints = 10; // default
     public data: DataPoint[];
 
 

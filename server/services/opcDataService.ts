@@ -21,7 +21,7 @@ export default class OpcDataService {
     constructor(options: any) {
 
         this._opcServiceDa = options.opcServiceDA;
-        this._opcServiceHistorical = (!options.opcServiceHistorcal) ? options.opcService() : options.opcServiceHistorcal;
+        this._opcServiceHistorical = (!options.opcServiceHistorcal) ? options.opcServiceDA : options.opcServiceHistorcal;
         this._syncFreqNode = options.syncFreqNode;
         this._historicalNode = options.historicalNode;
         this._syncFreqStatusNode = options.syncFreqStatusNode;
@@ -74,7 +74,7 @@ export default class OpcDataService {
             startDate.setMinutes(endData.getMinutes() - minutesAgo);
 
             let history = [];
-            this._opcServiceHistorical.GetHistory(this._historicalNode, startDate, endData)
+            self._opcServiceHistorical.GetHistory(self._historicalNode, startDate, endData)
                 .then((res) => {
 
                     res.Values.forEach((val, ix) => {

@@ -2,7 +2,6 @@
 
 "use strict";
 import * as Hapi from "hapi";
-import { config } from "./server/config/config";
 import Routes from "./server/routes/routes";
 import TimeSeriesPlugin from "./server/plugins/timeSeries";
 import { Plugin } from "./server/utils/plugin";
