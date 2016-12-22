@@ -57,33 +57,33 @@ let commandOpts = minimist(process.argv.slice(2), {
 
 
 
-
-let opts = xtend(config.server, commandOpts);
+let serverConf = Config.get<number>("Server");
+let opts = xtend(serverConf, commandOpts);
 
 server = new Hapi.Server();
 server.connection({ port: opts.port });
 
 
-let opcServiceDa = Opc.ServiceFactory.CreateOpcService(Config.get<string>("OpcServerUrl"), 10);
+let opcServiceDa = Opc.ServiceFactory.CreateOpcService(Config.get<string>("OpcDataSource.OpcServerUrl"), 10);
 let opcServiceHistorical: Opc.Service;
 
 let synFreqNodeId: Opc.NodeId;
 let historicalNodeId: Opc.NodeId;
 let syncFreqStatusNodeId: Opc.NodeId;
 
-createNodeId(Config.get("SyncFreqNode"))
+createNodeId(Config.get("OpcDataSource.SyncFreqNode"))
   .then((nodeId) => {
     synFreqNodeId = nodeId;
-    return createNodeId(Config.get("HistoricalNode"));
+    return createNodeId(Config.get("OpcDataSource.HistoricalNode"));
   })
   .then((nodeId) => {
     historicalNodeId = nodeId;
-    return createNodeId(Config.get("SyncStatusNode"))
+    return createNodeId(Config.get("OpcDataSource.SyncStatusNode"));
   })
   .then((nodeId) => {
     syncFreqStatusNodeId = nodeId;
-    if (Config.has("HistoricalNode.OpcServerUrl"))
-      opcServiceHistorical = Opc.ServiceFactory.CreateOpcService(Config.get<string>("HistoricalNode.OpcServerUrl"), 10);
+    if (Config.has("OpcDataSource.HistoricalNode.OpcServerUrl"))
+      opcServiceHistorical = Opc.ServiceFactory.CreateOpcService(Config.get<string>("OpcDataSource.HistoricalNode.OpcServerUrl"), 10);
 
     let opcServiceOptions = {
 

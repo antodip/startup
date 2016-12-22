@@ -1,6 +1,5 @@
 "use strict";
 var Hapi = require("hapi");
-var config_1 = require("./server/config/config");
 var routes_1 = require("./server/routes/routes");
 var timeSeries_1 = require("./server/plugins/timeSeries");
 var Path = require("path");
@@ -45,27 +44,28 @@ var commandOpts = minimist(process.argv.slice(2), {
         "port": "p"
     }
 });
-var opts = xtend(config_1.config.server, commandOpts);
+var serverConf = Config.get("Server");
+var opts = xtend(serverConf, commandOpts);
 server = new Hapi.Server();
 server.connection({ port: opts.port });
-var opcServiceDa = Opc.ServiceFactory.CreateOpcService(Config.get("OpcServerUrl"), 10);
+var opcServiceDa = Opc.ServiceFactory.CreateOpcService(Config.get("OpcDataSource.OpcServerUrl"), 10);
 var opcServiceHistorical;
 var synFreqNodeId;
 var historicalNodeId;
 var syncFreqStatusNodeId;
-createNodeId(Config.get("SyncFreqNode"))
+createNodeId(Config.get("OpcDataSource.SyncFreqNode"))
     .then(function (nodeId) {
     synFreqNodeId = nodeId;
-    return createNodeId(Config.get("HistoricalNode"));
+    return createNodeId(Config.get("OpcDataSource.HistoricalNode"));
 })
     .then(function (nodeId) {
     historicalNodeId = nodeId;
-    return createNodeId(Config.get("SyncStatusNode"));
+    return createNodeId(Config.get("OpcDataSource.SyncStatusNode"));
 })
     .then(function (nodeId) {
     syncFreqStatusNodeId = nodeId;
-    if (Config.has("HistoricalNode.OpcServerUrl"))
-        opcServiceHistorical = Opc.ServiceFactory.CreateOpcService(Config.get("HistoricalNode.OpcServerUrl"), 10);
+    if (Config.has("OpcDataSource.HistoricalNode.OpcServerUrl"))
+        opcServiceHistorical = Opc.ServiceFactory.CreateOpcService(Config.get("OpcDataSource.HistoricalNode.OpcServerUrl"), 10);
     var opcServiceOptions = {
         opcServiceDA: opcServiceDa,
         syncFreqNode: synFreqNodeId,
