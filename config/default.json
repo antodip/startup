@@ -1,0 +1,29 @@
+{
+    
+    // identifier allowed values: {numeric, string, guid, byteString}
+    
+    "OpcServerUrl": "opc.tcp://svilsql2012:62544/Quickstarts/DataAccessServer",
+    "SyncFreqNode": {
+
+        "identifier": "string",
+        "value": "1:LC1001?Output",
+        "nameSpace": "2"
+    },
+
+    "SyncStatusNode":{
+
+        "identifier": "string",
+        "value": "1:LC1001?Status",
+        "nameSpace": "2"
+    },
+
+
+     "HistoricalNode": {
+
+        "OpcServerUrl": "opc.tcp://svilsql2012.techimp.com:62546/Quickstarts/HistoricalAccessServer",
+        "identifier": "string",
+        "value": "1:Quickstarts.HistoricalAccessServer.Data.Dynamic.Double.txt",
+        "nameSpace": "2"
+    }
+
+}

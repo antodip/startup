@@ -1,35 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { RepositoryService } from './repository.service';
-import { DataPoint } from './dataPoint';
-//import { ChartsModule } from 'ng2-charts';
+import { Component, OnInit } from "@angular/core";
+import { RepositoryService } from "./repository.service";
+import { DataPoint } from "./dataPoint";
+// import { ChartsModule } from 'ng2-charts';
 
 
 
 @Component({
-    selector: 'realTimeSerie',
-    templateUrl: 'app/realTimeSerie.component.html'
+    selector: "realTimeSerie",
+    templateUrl: "app/realTimeSerie.component.html"
 })
 
 export class RealTimeSeriesComponent {
 
-    frequency = 1000;
-    buffer: Array<any> = [];
+    public frequency = 1000;
+    public buffer: any[]  = [];
 
-    public lineChartData: Array<any> = [{
+    public lineChartData: any[] = [{
         data: [],
         fill: false
     }];
-    public lineChartType: string = 'line';
+    public lineChartType: string = "line";
 
-    public lineChartColors: Array<any> = [
-        
+    public lineChartColors: any[]  = [
+
         { // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
+            backgroundColor: "rgba(77,83,96,0.2)",
+            borderColor: "rgba(77,83,96,1)",
+            pointBackgroundColor: "rgba(77,83,96,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(77,83,96,1)"
         }
     ];
     public lineChartOptions: any = {
@@ -37,12 +37,13 @@ export class RealTimeSeriesComponent {
         responsive: true,
         maintainAspectRatio: false,
         borderColor: "rgb(255,100,100)",
+        showLines: true,
         scales: {
             xAxes: [{
-                type: 'time',
+                type: "time",
                 time: {
                     displayFormats: {
-                        quarter: 'MMM YYYY'
+                        quarter: "MMM YYYY"
                     }
                 }
             }]
@@ -50,7 +51,7 @@ export class RealTimeSeriesComponent {
     };
 
     constructor(public repositoryService: RepositoryService) {
-        repositoryService.dataSource$.subscribe(data => {
+        repositoryService.SyncFreq$.subscribe(data => {
             this.buildTrend(data);
         })
     }
@@ -69,8 +70,9 @@ export class RealTimeSeriesComponent {
         this.lineChartData = [{
             data: this.buffer,
             fill: false,
-            label: "RealTimeTrend Test"
-        }]
+            label: "Real Time",
+            showline: true
+        }];
 
     }
 

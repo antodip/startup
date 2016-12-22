@@ -1,5 +1,5 @@
 export interface IRegister {
-    (server:any, options:any, next:any): void;
+    (server: any, options: any, next: any): void;
     attributes?: any;
 }
 
@@ -16,11 +16,11 @@ export abstract class Plugin {
         this.register.attributes = attributes;
     }
 
-    register:IRegister = (server, options, next) => {
+    public register: IRegister = (server, options, next) => {
         server.bind(this);
         this._register(server, options);
         next();
-    };
+    }
 
      abstract _register(server, options);
 }

@@ -1,15 +1,15 @@
 import * as Hapi from "hapi";
 import {Plugin} from "../utils/plugin";
-import { Router } from "../routes/router"
-import DataGenerator  from "../model/dataGenerator";
-const Primus = require('primus.io');
+import { Router } from "../routes/router";
+import RandomDataGeneratorService  from "../services/randomDataGeneratorService";
+const Primus = require("primus.io");
 
 
 
-export default class DataAcquirer extends Plugin {
+export default class RandomDataAcquirer extends Plugin {
 
-    primus: any;
-    private _dataGenerator: DataGenerator;
+    public primus: any;
+    private _dataGenerator: RandomDataGeneratorService;
     private _timeInterval: number;
     private _currentTicks: number;
     private _isGenerating: boolean;
@@ -17,8 +17,8 @@ export default class DataAcquirer extends Plugin {
 
     constructor(public options: any) {
         super(options, {
-            name: 'data-generator',
-            version: '0.1.0'
+            name: "data-generator",
+            version: "0.1.0"
         });
         this._dataGenerator = this.options.dataGenerator;
         this._timeInterval = this.options.timeInterval;
@@ -26,31 +26,29 @@ export default class DataAcquirer extends Plugin {
     }
 
 
-    _register(server, options) {
+    public _register(server, options) {
 
 
         let self = this;
-        var primusOptions = {
+        let primusOptions = {
             transformer: "engine.io"
-        }
+        };
         this.primus = new Primus(server.listener, primusOptions);
 
-
-
-        this.primus.on('connection', function (spark) {
+        this.primus.on("connection", (spark) => {
 
             self.start(spark, self._timeInterval);
 
-            spark.on("frequency", function (frequency: string) {
+            spark.on("frequency", (frequency: string) => {
                 self.stop();
                 self.start(spark, +frequency);
-            })
+            });
 
 
         });
 
-        this.primus.on('disconnection', function (spark) {
-                console.log("disconnected!")
+        this.primus.on("disconnection", (spark) => {
+                console.log("disconnected!");
         });
 
     }
@@ -61,11 +59,11 @@ export default class DataAcquirer extends Plugin {
 
         let self = this;
         if (self._isGenerating) return;
-        this.generateData(spark, frequency, function (id: NodeJS.Timer) {
+        this.generateData(spark, frequency, (id: NodeJS.Timer) => {
             self._isGenerating = true;
             self._currentTimer = id;
             self._timeInterval = frequency;
-        })
+        });
 
     }
 
@@ -81,11 +79,11 @@ export default class DataAcquirer extends Plugin {
 
     private generateData = (spark: any, frequency: number, cb: (id: NodeJS.Timer) => void): void => {
         let self = this;
-        let ret = setInterval(function () {
+        let ret = setInterval(() => {
 
-            var newAcquisition = self._dataGenerator.getRandomDataPointByDateAndFrequency(self._currentTicks, frequency);
+            let newAcquisition = self._dataGenerator.getRandomDataPointByDateAndFrequency(self._currentTicks, frequency);
             self._currentTicks = newAcquisition.dateTime;
-            self.primus.send('acquisition', newAcquisition);
+            self.primus.send("acquisition", newAcquisition);
 
         }, frequency);
         cb(ret);
@@ -94,4 +92,4 @@ export default class DataAcquirer extends Plugin {
 
 
 
-} 
+}

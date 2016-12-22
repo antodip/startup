@@ -1,46 +1,33 @@
 {
+    // Use IntelliSense to find out which attributes exist for node debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "node",
+            "type": "node2",
             "request": "launch",
+            "name": "Launch Program",
             "program": "${workspaceRoot}/index.js",
-            "stopOnEntry": false,
-            "args": [],
             "cwd": "${workspaceRoot}",
-            "preLaunchTask": null,
-            "runtimeExecutable": null,
-            "runtimeArgs": [
-                "--nolazy"
-            ],
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "console": "internalConsole",
-            "sourceMaps": false,
-            "outFiles": []
+            "sourceMaps": true
         },
-        {
-            "name": "Attach",
-            "type": "node",
-            "request": "attach",
-            "port": 5858,
-            "address": "localhost",
-            "restart": false,
-            "sourceMaps": false,
-            "outFiles": [],
-            "localRoot": "${workspaceRoot}",
-            "remoteRoot": null
-        },
+        // {
+        //     "name": "Launch Program",
+        //     "type": "node2",
+        //     "request": "launch",
+        //     "program": "${workspaceRoot}/index.js",
+        //     "cwd": "${workspaceRoot}",
+        //     "outFiles": [],
+        //     "sourceMaps": true
+        // },
         {
             "name": "Attach to Process",
-            "type": "node",
+            "type": "node2",
             "request": "attach",
-            "processId": "${command.PickProcess}",
-            "port": 5858,
-            "sourceMaps": false,
-            "outFiles": []
+            "port": 9229,
+            "outFiles": [],
+            "sourceMaps": true
         }
     ]
 }

@@ -1,13 +1,14 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
-import { ChartsModule } from 'ng2-charts/components/charts/charts';
+import { NgModule }      from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule }   from "@angular/forms";
+import { HttpModule }    from "@angular/http";
+import { ChartsModule } from "ng2-charts/components/charts/charts";
 
-import { TimeSeriesComponent } from './timeSeries.component'
-import { RealTimeSeriesComponent } from './realTimeSerie.component'
-import { AppComponent }  from './app.component';
-import { RepositoryService } from './repository.service';
+import { TimeSeriesComponent } from "./timeSeries.component";
+import { RealTimeSeriesComponent } from "./realTimeSerie.component";
+import { StatusLedComponent } from "./statusLed.component";
+import { AppComponent }  from "./app.component";
+import { RepositoryService } from "./repository.service";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { RepositoryService } from './repository.service';
   declarations: [
     AppComponent,
     TimeSeriesComponent,
-    RealTimeSeriesComponent
+    RealTimeSeriesComponent,
+    StatusLedComponent
   ],
   providers: [RepositoryService],
   bootstrap: [ AppComponent ]

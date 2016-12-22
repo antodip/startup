@@ -1,0 +1,54 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "interface-name": [
+      false
+    ],
+    "max-classes-per-file": [
+      false
+    ],
+    "max-line-length": [
+      false,
+      140
+    ],
+    "member-ordering": [
+      true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions"
+    ],
+    "no-unused-variable": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+    "no-consecutive-blank-lines": [
+      false
+    ],
+    "object-literal-sort-keys": false,
+    "no-console": [
+      false
+    ],
+    "no-var-requires": false,
+    "one-line": [
+      false
+    ],
+    "curly": false,
+    "arrow-parens": false,
+    "no-null-keyword": true,
+    "ordered-imports": [
+      false,
+      {
+        "import-sources-order": "case-insensitive",
+        "named-imports-order": "case-insensitive"
+      }
+    ],
+    "trailing-comma": [
+      false
+    ]
+  },
+  "jsRules": {}
+}
