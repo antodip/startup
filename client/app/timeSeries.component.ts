@@ -49,7 +49,7 @@ export class TimeSeriesComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.getData(100);
+        this.getData(10);
     }
 
     private dataHandler(d: any) {

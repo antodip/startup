@@ -6,21 +6,20 @@
     "OpcDataSource": {
 
         // identifier allowed values: {numeric, string, guid, byteString}
-        "OpcServerUrl": "opc.tcp://svilsql2012:62544/Quickstarts/DataAccessServer",
+        "OpcServerUrl": "opc.tcp://192.168.10.225:48010",
         "SyncFreqNode": {
             "identifier": "string",
-            "value": "1:LC1001?Output",
+            "value": "5004.frequency",
             "nameSpace": "2"
         },
         "SyncStatusNode": {
             "identifier": "string",
-            "value": "1:LC1001?Status",
+            "value": "5004.synced",
             "nameSpace": "2"
         },
         "HistoricalNode": {
-            "OpcServerUrl": "opc.tcp://svilsql2012.techimp.com:62546/Quickstarts/HistoricalAccessServer",
             "identifier": "string",
-            "value": "1:Quickstarts.HistoricalAccessServer.Data.Dynamic.Double.txt",
+            "value": "5004.frequency",
             "nameSpace": "2"
         }
     }

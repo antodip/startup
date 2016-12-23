@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import { Subject }  from "rxjs/Subject";
+import { Subject } from "rxjs/Subject";
 import { DataPoint } from "./dataPoint";
-import { Observable }  from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
 
 
 let Primus = require("../precompiled/primus.io.js");
@@ -12,7 +12,7 @@ let Primus = require("../precompiled/primus.io.js");
 @Injectable()
 export class RepositoryService {
 
-     // Observable streams
+    // Observable streams
 
     private srvRepoUrl = "/test";
     private _syncFreq$ = new Subject<Ng2Point>();
@@ -53,8 +53,21 @@ export class RepositoryService {
 
     public sendFrequency(frequency: number) {
 
-       if (this._socket)
-        this._socket.send("frequency", frequency);
+        this.openSocket()
+            .then((socket) => {
+                socket.send("frequency", frequency);
+            });
+
+
+    }
+
+    public refreshStatus() {
+
+        this.openSocket()
+            .then((socket) => {
+                socket.send("refreshStatus");
+            });
+
 
     }
 
@@ -73,28 +86,49 @@ export class RepositoryService {
 
 
     private listenForData() {
-        let socket = Primus.connect();
+
         let self = this;
+        this.openSocket()
+            .then((socket) => {
 
-        socket.on("open", () => {
+                socket.on("syncFreq", (data: DataPoint) => {
 
-            self._socket = socket;
-            socket.on("syncFreq", (data: DataPoint) => {
+                    let ng2Chart = <Ng2Point>{
+                        x: data.dateTime,
+                        y: data.value
+                    };
+                    self._syncFreq$.next(ng2Chart);
+                });
 
-                let ng2Chart =  <Ng2Point> {
-                    x: data.dateTime,
-                    y: data.value
-                };
-                self._syncFreq$.next(ng2Chart);
+
+                socket.on("syncStatus", (status: boolean) => {
+                    self._syncStatus$.next(status);
+                });
             });
 
+    }
 
-            socket.on("syncStatus", (status: boolean) => {
+    private openSocket(): Promise<any> {
 
-                //let val: boolean = (!data.value) ? false : true;
-                self._syncStatus$.next(status);
+        let self = this;
+        return new Promise<any>((resolve, reject) => {
+
+            if (self._socket) {
+
+                resolve(self._socket);
+                return;
+            }
+
+            self._socket = Primus.connect();
+
+            self._socket.on("open", () => {
+
+                resolve(self._socket);
+
             });
+
         });
+
     }
 
 

@@ -6,7 +6,7 @@ import { RepositoryService } from "./repository.service";
     templateUrl: "app/statusLed.component.html"
 })
 
-export class StatusLedComponent {
+export class StatusLedComponent implements OnInit {
 
     public ledUrl: string;
 
@@ -20,6 +20,11 @@ export class StatusLedComponent {
         });
     }
 
+    public ngOnInit(): void {
+
+        this.repositoryService.refreshStatus();
+    }
+
 
     private changeIconStatus(val: boolean) {
 
@@ -28,5 +33,8 @@ export class StatusLedComponent {
         else
             this.ledUrl = "../icons/ballRed.png";
     }
+
+
+
 
 }

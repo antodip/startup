@@ -64,6 +64,17 @@ export default class OpcDataService {
     }
 
 
+    public RefreshStatus() {
+
+        this._opcServiceDa.ReadNode(this._syncFreqStatusNode)
+            .then((opcData) => {
+                let val: boolean = (!opcData.Value) ? false : true;
+                this._syncFreqStatus$.next(val);
+            });
+
+    }
+
+
     public GetHistory(minutesAgo: number): Promise<DataPoint[]> {
 
         let self = this;

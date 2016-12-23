@@ -36,6 +36,10 @@ export default class OpcDataPlugin extends Plugin {
             self._opcDataService.SyncFreqStatus$.subscribe((val) =>
                 self._primus.send("syncStatus", val));
 
+            spark.on("refreshStatus", () => {
+                self._opcDataService.RefreshStatus();
+            });
+
         });
 
         this._primus.on("disconnection", (spark) => {
