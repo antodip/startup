@@ -74,7 +74,6 @@ createNodeId(Config.get("OpcDataSource.SyncFreqNode"))
         opcServiceHistorcal: opcServiceHistorical
     };
     // register plugins and start server
-    // let dataGenerator = new RandomDataGeneratorService();
     var opcDataService = new opcDataService_1.default(opcServiceOptions);
     opcDataService.StartMonitoring();
     var opcDataPlugin = new opcDataPlugin_1.default({
@@ -85,21 +84,17 @@ createNodeId(Config.get("OpcDataSource.SyncFreqNode"))
         // tslint:disable-next-line:object-literal-shorthand
         service: opcDataService
     });
-    // let dataAcquirerPlugin = new RandomDataAcquirer({
-    //   dataGenerator: new RandomDataGeneratorService(),
-    //   timeInterval: 1000
-    // });
-    server.register([Inert, timeSeriesPlugin, opcDataPlugin])
-        .then(function () {
-        return server.start();
-    })
-        .then(function () {
-        console.log("Server running at:", server.info.uri);
-    })
-        .catch(function (err) {
-        console.error("Error:", err);
-    });
-    // Routes
+    return server.register([Inert, timeSeriesPlugin, opcDataPlugin]);
+})
+    .then(function () {
+    return server.start();
+})
+    .then(function () {
     routes_1.default(server, Path.resolve(__dirname));
+    console.log("Server running at:", server.info.uri);
+})
+    .catch(function (err) {
+    console.error("Error:", err);
 });
+// Routes
 //# sourceMappingURL=index.js.map
