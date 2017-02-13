@@ -42,8 +42,12 @@ typings
 system-config.js*
 client/app/**/*.js
 client/app/**/*.map
+client/test/**/*.js
+client/test/**/*.map
 server/**/*.js
 server/**/*.map
+index.js
+index.js.map
 node_modules
 jspm_packages
 bower_components
